@@ -5,6 +5,7 @@
  * @description: 划词搜索、划词翻译、网址跳转
  * @include: *
  // @grant        GM_openInTab
+* @grant: GM_openInTab
  */
 
 !function() {
@@ -42,6 +43,11 @@
   function hccdyc() {
     clearTimeout(hcTimer);
     hcTimer = setTimeout(hccd, 750);
+          //这里
+    clearTimeout(timer);
+//    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
+   timer = setTimeout(function(e){ fadeOut(document.getElementById("hckj"));}, 6000);
+   
     if (document.getElementById("zdan")) {
       document.getElementById("zdan").parentNode.removeChild(document.getElementById("zdan"));
     }
@@ -51,10 +57,6 @@
 
     text ? (document.getElementById("hckj").style.display = "block", zdcd()) : document.getElementById("hckj").style.display = "none";
 
-       //这里
-    clearTimeout(timer);
-//    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
-   timer = setTimeout(function(e){ fadeOut(document.getElementById("hckj"));}, 6000);
   }
 
   function tzurl(a, b) {
