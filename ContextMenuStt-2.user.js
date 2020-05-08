@@ -51,14 +51,33 @@
 
     text ? (document.getElementById("hckj").style.display = "block", zdcd()) : document.getElementById("hckj").style.display = "none";
 
+       //这里
+    clearTimeout(timer);
+//    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
+   timer = setTimeout(function(e){ fadeOut(document.getElementById("hckj"));}, 6000);
   }
 
   function tzurl(a, b) {
     //这里
-    hcdiv.style.cssText = "display:none";
+//    hcdiv.style.cssText = "display:none";
+//    fadeOut(hcdiv);
+   fadeOut(document.getElementById("hckj"));
     b = b || text;
     ljurl = a + b;
-    window.open(ljurl);
+//    window.open(ljurl);
+    try {
+            if(GM_openInTab(ljurl, { loadInBackground: true, insert: true, setParent :true })){
+                //success info
+               fadeOut(icon);
+               //console.log("doSomethingOk");
+               } else{
+               //fail info
+              // console.log("doSomethingNotOk");
+               }
+          } catch (error) {
+               return GM_openInTab(ljurl, { loadInBackground: true, insert: true, setParent :true });
+          }
+    }
   }
 
   function zdcd() {
@@ -82,9 +101,7 @@
     var cddiv = document.createElement("div");
     cddiv.id = "cdkj";
     cddiv.style.cssText = "display:block!important;width:100%;position:fixed;bottom:0px;z-index:9999999999;text-align:center;margin:4px auto;padding:4px;-webkit-tap-highlight-color:rgba(0,0,0,0);";
-    //这里
-    clearTimeout(timer);
-    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
+
 
     document.body.appendChild(cddiv);
     var cdstyle = document.createElement("style");
@@ -96,6 +113,8 @@
   hcdiv.id = "hckj";
   hcdiv.style.cssText = "display:none";
   document.getElementById("cdkj").appendChild(hcdiv);
+
+
 
   for (var i = 0; i < ssyq.length; i++) {
     var jksp = document.createElement("span");
@@ -122,8 +141,9 @@ document.addEventListener('scroll', function(e){
 
         (function fade() {
             if ((el.style.opacity -= .1) < 0) {
-//                el.style.display = "none";
-                   el.style.cssText = "display:none";
+                el.style.display = "none";
+//                   el.style.cssText = "display:none";
+             
             } else {
                 requestAnimationFrame(fade);
             }
