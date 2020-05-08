@@ -43,10 +43,7 @@
   function hccdyc() {
     clearTimeout(hcTimer);
     hcTimer = setTimeout(hccd, 750);
-          //这里
-    clearTimeout(timer);
-//    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
-   timer = setTimeout(function(e){ fadeOut(document.getElementById("hckj"));}, 6000);
+
    
     if (document.getElementById("zdan")) {
       document.getElementById("zdan").parentNode.removeChild(document.getElementById("zdan"));
@@ -129,6 +126,11 @@
   }
 
 document.addEventListener("selectionchange", hccdyc);
+
+          //这里
+    clearTimeout(timer);
+//    timer = setTimeout(function(e){ fadeOut(hcdiv);}, 6000);
+   timer = setTimeout(function(e){ fadeOut(document.getElementById("hckj"));}, 6000);
 //这里  
 document.addEventListener('scroll', function(e){
         hcdiv.style.cssText = "display:none";
